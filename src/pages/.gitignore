@@ -1,0 +1,5 @@
+# Ignorar arquivos de teste na pasta pages
+*.test.ts
+*.test.tsx
+*.spec.ts
+*.spec.tsx
