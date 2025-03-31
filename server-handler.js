@@ -1,21 +1,25 @@
-'use strict';
+"use strict";
 
-const { NestFactory } = require('@nestjs/core');
-const { AppModule } = require('./dist/app.module');
-const serverless = require('serverless-http');
-const { bootstrap } = require('./dist/server/serverless');
+const { NestFactory } = require("@nestjs/core");
+const { AppModule } = require("./src/server/app.module");
+const serverless = require("serverless-http");
 
-let server;
+let cachedServer;
 
-async function setup() {
-  if (!server) {
-    server = await bootstrap();
+async function bootstrap() {
+  if (!cachedServer) {
+    const app = await NestFactory.create(AppModule);
+    app.enableCors();
+    await app.init();
+
+    const expressApp = app.getHttpAdapter().getInstance();
+    cachedServer = serverless(expressApp);
   }
-  return server;
+
+  return cachedServer;
 }
 
-exports.handler = async (event, context) => {
-  const app = await setup();
-  const handler = serverless(app);
-  return handler(event, context);
+module.exports = async (req, res) => {
+  const server = await bootstrap();
+  return server(req, res);
 };

@@ -2,15 +2,12 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
-  // Configuração para a Vercel
-  async rewrites() {
+  // Configuração para permitir API routes
+  rewrites: async () => {
     return [
       {
         source: "/api/:path*",
-        destination:
-          process.env.NODE_ENV === "development"
-            ? "http://localhost:4000/api/:path*"
-            : "/api/:path*",
+        destination: "/api/:path*",
       },
     ];
   },
@@ -42,7 +39,7 @@ const nextConfig = {
     forceSwcTransforms: true,
   },
 
-  // Adicione esta configuração para garantir que o routes-manifest.json seja gerado corretamente
+  // Configuração para serverless
   output: "standalone",
 };
 
