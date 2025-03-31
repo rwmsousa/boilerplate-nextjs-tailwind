@@ -14,8 +14,6 @@ const nextConfig = {
       },
     ];
   },
-  // Configure the build output directory
-  distDir: "dist/client",
   // Ensure Next.js knows where to find pages and exclude test files
   pageExtensions: ["tsx", "ts"].filter((ext) => !ext.includes("test")),
   // Excluir arquivos de teste
