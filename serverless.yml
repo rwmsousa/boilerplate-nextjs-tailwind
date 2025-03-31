@@ -21,9 +21,6 @@ plugins:
 
 custom:
   serverless-offline:
-    httpPort: 4000
-
-  serverless-offline:
     httpPort: 3001
     lambdaPort: 3003
     websocketPort: 3004
@@ -31,3 +28,6 @@ custom:
     corsConfig:
       origin: '*'
       allowCredentials: false
+  serverlessPluginTypescript:
+    tsConfigFileLocation: './tsconfig.serverless.json'
+    skipTsBuildInfo: true
