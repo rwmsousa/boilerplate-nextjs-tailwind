@@ -4,7 +4,7 @@ const nextConfig = {
   // Configure the build output directory
   distDir: 'dist/client',
   // Ensure Next.js knows where to find pages and exclude test files
-  pageExtensions: ['tsx', 'ts'].filter(ext => !ext.includes('test')),
+  pageExtensions: ['tsx', 'ts'].filter((ext) => !ext.includes('test')),
   // Excluir arquivos de teste
   webpack: (config, { dev, isServer }) => {
     // Excluir arquivos de teste do build
@@ -24,6 +24,12 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
-}
 
-module.exports = nextConfig
+  // Add your Babel configuration here if absolutely necessary
+  experimental: {
+    // This enables SWC compiler while still allowing some Babel customization
+    forceSwcTransforms: true,
+  },
+};
+
+module.exports = nextConfig;
