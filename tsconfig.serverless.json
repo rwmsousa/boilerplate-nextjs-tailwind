@@ -1,13 +1,11 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "module": "commonjs",
-    "target": "es2019",
-    "noEmit": false,
     "outDir": "dist",
-    "incremental": false,
-    "sourceMap": true
+    "module": "commonjs",
+    "target": "es2017",
+    "isolatedModules": false,
+    "noEmit": false
   },
-  "include": ["src/server/**/*.ts"],
-  "exclude": ["node_modules", ".serverless", ".next", "dist"]
+  "include": ["src/server/**/*.ts", "src/app.module.ts"]
 }

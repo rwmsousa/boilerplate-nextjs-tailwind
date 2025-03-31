@@ -23,8 +23,8 @@ async function bootstrap() {
     // Configuração de CORS se necessário
     app.enableCors();
 
-    // Prefixo global para todas as rotas da API
-    app.setGlobalPrefix("api");
+    // Importante: NÃO use setGlobalPrefix aqui, pois a Vercel já roteia para /api
+    // app.setGlobalPrefix("api");
 
     // Inicializa o aplicativo
     await app.init();
@@ -38,7 +38,7 @@ async function bootstrap() {
 
 // Handler para AWS Lambda/Vercel
 export const handler = async (event: any, context: any) => {
-  const app = await bootstrap();
+  await bootstrap();
 
   // Cria um handler serverless a partir do aplicativo Express
   const serverlessHandler = serverless(expressApp);
@@ -49,7 +49,7 @@ export const handler = async (event: any, context: any) => {
 
 // Exporta o handler para uso com Vercel
 export default async (req: any, res: any) => {
-  const app = await bootstrap();
+  await bootstrap();
 
   // Adapta a requisição/resposta para o formato esperado pelo Express
   return expressApp(req, res);
