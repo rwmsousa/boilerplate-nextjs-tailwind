@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { NestFactory } from '@nestjs/core';
 import { FastifyAdapter } from '@nestjs/platform-fastify';
-import { AppModule } from '../app.module';
+import { AppModule } from './app.module';
 import { APIGatewayProxyHandler } from 'aws-lambda';
 
 const cachedServer = null; // Or remove if not needed

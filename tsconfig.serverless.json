@@ -1,18 +1,12 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "incremental": false,
-    "sourceMap": true,
     "outDir": ".serverless",
-    "rootDir": "src",
     "module": "commonjs",
-    "target": "es2018",
+    "target": "es2017",
+    "isolatedModules": false,
     "noEmit": false
   },
-  "include": ["src/server/**/*.ts"],
-  "exclude": [
-    "node_modules",
-    "**/*.test.ts",
-    "**/*.spec.ts"
-  ]
+  "include": ["src/server/**/*", "src/app.module.ts"],
+  "exclude": ["node_modules", "**/*.test.ts"]
 }
