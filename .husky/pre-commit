@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-# Executar lint e testes antes do commit
-npm run lint
+# Executar lint-staged para corrigir problemas de linting e formatação
+npx lint-staged
 
 npm test

@@ -1,4 +1,6 @@
 #!/usr/bin/env sh
+
+# Executar testes antes do push
 npm test
 
 npm run lint && npm run test

@@ -1,4 +1,6 @@
 #!/usr/bin/env sh
+
+# Verificar formato da mensagem de commit
 npx --no -- commitlint --edit "$1"
 
 npx --no -- commitlint --edit $1
