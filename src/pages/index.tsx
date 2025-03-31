@@ -1,32 +1,52 @@
-import { FC } from 'react';
-import { GetServerSideProps } from 'next';
+import { useState, useEffect } from "react";
+import { GetServerSideProps } from "next";
 
-interface HomeProps {
-  message: string;
-}
+export default function Home() {
+  const [message, setMessage] = useState("");
+  const [loading, setLoading] = useState(true);
 
-const Home: FC<HomeProps> = ({ message }) => {
+  useEffect(() => {
+    async function fetchHello() {
+      try {
+        const response = await fetch("/api/hello");
+        const data = await response.json();
+        setMessage(data.message);
+      } catch (error) {
+        console.error("Erro ao buscar dados:", error);
+        setMessage("Erro ao carregar mensagem");
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchHello();
+  }, []);
+
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center py-2">
-      <main className="flex w-full flex-1 flex-col items-center justify-center px-20 text-center">
-        <h1 className="text-6xl font-bold">
-          Welcome to <span className="text-blue-600">Next.js + NestJS!</span>
-        </h1>
-        <p className="mt-3 text-2xl">
-          {message}
-        </p>
-      </main>
+    <div className="container mx-auto p-4">
+      <h1 className="text-2xl font-bold mb-4">Teste da API</h1>
+      {loading ? (
+        <p>Carregando...</p>
+      ) : (
+        <div className="p-4 border rounded bg-gray-100">
+          <p>Mensagem da API: {message}</p>
+        </div>
+      )}
+      <button
+        className="mt-4 px-4 py-2 bg-blue-500 text-white rounded"
+        onClick={() => (window.location.href = "/api/hello")}
+      >
+        Acessar API diretamente
+      </button>
     </div>
   );
-};
+}
 
 export const getServerSideProps: GetServerSideProps = async () => {
   // You can fetch data from your API here
   return {
     props: {
-      message: 'This is a server-side rendered page with Next.js and NestJS',
+      message: "This is a server-side rendered page with Next.js and NestJS",
     },
   };
 };
-
-export default Home;
