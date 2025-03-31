@@ -34,8 +34,7 @@ module.exports = {
     'next.config.js',
     'handler.js',
     'server-handler.js',
-    // Add test files if you want to ignore them temporarily
-    // 'src/tests/**/*',
+    'src/tests/**/*',
   ],
   rules: {
     '@typescript-eslint/interface-name-prefix': 'off',
