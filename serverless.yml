@@ -1,0 +1,70 @@
+service: nextjs-nestjs-serverless
+
+provider:
+  name: aws
+  runtime: nodejs16.x
+  stage: dev
+  region: us-east-1
+
+plugins:
+  - serverless-offline
+
+functions:
+  api:
+    handler: server-handler.handler
+    events:
+      - http:
+          path: api/hello
+          method: get
+          cors:
+            origin: '*'
+            headers:
+              - Content-Type
+              - X-Amz-Date
+              - Authorization
+              - X-Api-Key
+              - X-Amz-Security-Token
+              - X-Amz-User-Agent
+            allowCredentials: false
+      - http:
+          path: api/hello
+          method: options
+          cors:
+            origin: '*'
+            headers:
+              - Content-Type
+              - X-Amz-Date
+              - Authorization
+              - X-Api-Key
+              - X-Amz-Security-Token
+              - X-Amz-User-Agent
+            allowCredentials: false
+  simple:
+    handler: handler.hello
+    events:
+      - http:
+          path: simple
+          method: get
+          cors:
+            origin: '*'
+            headers:
+              - Content-Type
+            allowCredentials: false
+      - http:
+          path: simple
+          method: options
+          cors:
+            origin: '*'
+            headers:
+              - Content-Type
+            allowCredentials: false
+
+custom:
+  serverless-offline:
+    httpPort: 3001
+    lambdaPort: 3003
+    websocketPort: 3004
+    noPrependStageInUrl: true
+    corsConfig:
+      origin: '*'
+      allowCredentials: false
