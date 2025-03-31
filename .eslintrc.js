@@ -35,6 +35,8 @@ module.exports = {
     'handler.js',
     'server-handler.js',
     'src/tests/**/*',
+    'next-env.d.ts',
+    'vite.config.ts',
   ],
   rules: {
     '@typescript-eslint/interface-name-prefix': 'off',
