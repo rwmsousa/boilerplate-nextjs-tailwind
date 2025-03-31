@@ -1,1 +1,6 @@
+#!/usr/bin/env sh
+
+# Executar lint e testes antes do commit
+npm run lint
+
 npm test

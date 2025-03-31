@@ -1,6 +1,16 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  swcMinify: true,
+  // Configuração para a Vercel
+  async rewrites() {
+    return [
+      {
+        source: '/api/:path*',
+        destination: process.env.NODE_ENV === 'development' ? 'http://localhost:4000/api/:path*' : '/api/:path*',
+      },
+    ];
+  },
   // Configure the build output directory
   distDir: 'dist/client',
   // Ensure Next.js knows where to find pages and exclude test files
