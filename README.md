@@ -8,7 +8,7 @@ A modern frontend template using Next.js and Tailwind CSS.
 - **Tailwind CSS**: Utility-first CSS framework
 - **TypeScript**: Type safety for your JavaScript
 - **ESLint & Prettier**: Code quality and formatting
-- **Jest & React Testing Library**: Testing framework
+- **Vitest**: Fast and lightweight testing framework
 - **Husky & lint-staged**: Git hooks for code quality
 - **Commitizen**: Standardized commit messages
 
@@ -62,62 +62,10 @@ project/
 │   │   ├── index.tsx   # Home page
 │   ├── styles/         # Global styles and Tailwind CSS
 │   ├── utils/          # Utility functions
-│   ├── tests/          # Unit and integration tests
+│   ├── tests/          # Test files
 ├── public/             # Static files
 ├── .husky/             # Git hooks
 └── [config files]      # Configuration files
-```
-
-## Adding New Pages
-
-To add a new page to the app:
-
-1. Create a new file in the `src/pages/` folder, for example `about.tsx`:
-
-```tsx
-import Layout from "../components/Layout";
-
-const About = () => {
-  return (
-    <Layout title="About">
-      <div className="bg-white shadow overflow-hidden sm:rounded-lg p-6">
-        <h1 className="text-2xl font-bold">About Page</h1>
-        <p className="mt-2">This is the about page of our application.</p>
-      </div>
-    </Layout>
-  );
-};
-
-export default About;
-```
-
-2. Access the page at `http://localhost:3000/about`
-
-## Creating Components
-
-Create reusable components in the `src/components/` folder:
-
-```tsx
-// src/components/Card.tsx
-import React from "react";
-
-type CardProps = {
-  title: string;
-  children: React.ReactNode;
-};
-
-const Card: React.FC<CardProps> = ({ title, children }) => {
-  return (
-    <div className="bg-white shadow overflow-hidden sm:rounded-lg">
-      <div className="px-4 py-5 sm:p-6">
-        <h3 className="text-lg leading-6 font-medium text-gray-900">{title}</h3>
-        <div className="mt-2">{children}</div>
-      </div>
-    </div>
-  );
-};
-
-export default Card;
 ```
 
 ## Testing

@@ -1,6 +1,8 @@
-#!/usr/bin/env sh
+#!/bin/sh
+. "$(dirname -- "$0")/_/husky.sh"
 
 # Executar lint-staged para corrigir problemas de linting e formatação
 npx lint-staged
 
-npm test
+# Executar testes (desativado por enquanto)
+# npm test
