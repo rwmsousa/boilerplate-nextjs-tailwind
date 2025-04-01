@@ -1,11 +1,13 @@
-import { render, screen } from '@testing-library/react';
-import React from 'react';
-import Home from '../../pages/index';
+import { render, screen } from "@testing-library/react";
+import React from "react";
+import Home from "../../pages/index";
 
-describe('Home page', () => {
-  it('renders the home page', () => {
+describe("Home page", () => {
+  it("renders the home page", () => {
     render(<Home />);
-    // Adicione aqui as asserções para verificar se a página foi renderizada corretamente
-    expect(screen.getByRole('heading')).toBeInTheDocument();
+    // Busca pelo título principal específico em vez de qualquer heading
+    expect(
+      screen.getByText("Next.js + Tailwind CSS Template"),
+    ).toBeInTheDocument();
   });
 });

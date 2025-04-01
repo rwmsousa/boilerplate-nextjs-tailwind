@@ -1,52 +1,69 @@
-import { useState, useEffect } from "react";
-import { GetServerSideProps } from "next";
+import { NextPage } from "next";
+import Layout from "../components/Layout";
+import Button from "../components/Button";
+import { useState } from "react";
 
-export default function Home() {
-  const [message, setMessage] = useState("");
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    async function fetchHello() {
-      try {
-        const response = await fetch("/api/hello");
-        const data = await response.json();
-        setMessage(data.message);
-      } catch (error) {
-        console.error("Erro ao buscar dados:", error);
-        setMessage("Erro ao carregar mensagem");
-      } finally {
-        setLoading(false);
-      }
-    }
-
-    fetchHello();
-  }, []);
+const Home: NextPage = () => {
+  const [count, setCount] = useState(0);
 
   return (
-    <div className="container mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-4">Teste da API</h1>
-      {loading ? (
-        <p>Carregando...</p>
-      ) : (
-        <div className="p-4 border rounded bg-gray-100">
-          <p>Mensagem da API: {message}</p>
-        </div>
-      )}
-      <button
-        className="mt-4 px-4 py-2 bg-blue-500 text-white rounded"
-        onClick={() => (window.location.href = "/api/hello")}
-      >
-        Acessar API diretamente
-      </button>
-    </div>
-  );
-}
+    <Layout title="Next.js + Tailwind CSS Template">
+      <div className="bg-white shadow overflow-hidden sm:rounded-lg p-6">
+        <div className="px-4 py-5 sm:p-6">
+          <h3 className="text-lg leading-6 font-medium text-gray-900">
+            Welcome to your Next.js + Tailwind CSS Template
+          </h3>
+          <div className="mt-2 max-w-xl text-sm text-gray-500">
+            <p>
+              This is a starter template for building modern web applications
+              with Next.js and Tailwind CSS.
+            </p>
+          </div>
 
-export const getServerSideProps: GetServerSideProps = async () => {
-  // You can fetch data from your API here
-  return {
-    props: {
-      message: "This is a server-side rendered page with Next.js and NestJS",
-    },
-  };
+          <div className="mt-5 flex flex-col items-center">
+            <div className="text-center">
+              <p className="text-2xl font-bold">{count}</p>
+              <p className="text-gray-500 mb-4">
+                Click the buttons to update the counter
+              </p>
+            </div>
+
+            <div className="flex space-x-3">
+              <Button variant="primary" onClick={() => setCount(count + 1)}>
+                Increment
+              </Button>
+
+              <Button variant="secondary" onClick={() => setCount(count - 1)}>
+                Decrement
+              </Button>
+
+              <Button variant="danger" onClick={() => setCount(0)}>
+                Reset
+              </Button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="mt-6 bg-white shadow overflow-hidden sm:rounded-lg">
+        <div className="px-4 py-5 sm:p-6">
+          <h3 className="text-lg leading-6 font-medium text-gray-900">
+            Features
+          </h3>
+          <div className="mt-2 max-w-xl text-sm text-gray-500">
+            <ul className="list-disc pl-5 space-y-1">
+              <li>Next.js for page routing and SSR/SSG</li>
+              <li>Tailwind CSS for styling</li>
+              <li>TypeScript for type safety</li>
+              <li>ESLint and Prettier for code quality</li>
+              <li>Jest and React Testing Library for testing</li>
+              <li>Husky and lint-staged for git hooks</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </Layout>
+  );
 };
+
+export default Home;
