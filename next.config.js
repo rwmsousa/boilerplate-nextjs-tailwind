@@ -31,6 +31,12 @@ const nextConfig = {
 
   // Movido de experimental.serverComponentsExternalPackages para cá
   serverExternalPackages: [],
+
+  // // Configurações de otimização (movidas para fora do experimental)
+  // optimizeFonts: true,
+  // images: {
+  //   formats: ['image/avif', 'image/webp'],
+  // },
 };
 
 module.exports = nextConfig;
