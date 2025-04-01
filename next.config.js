@@ -2,15 +2,6 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
-  // Configuração para permitir API routes
-  rewrites: async () => {
-    return [
-      {
-        source: "/api/:path*",
-        destination: "/api/:path*",
-      },
-    ];
-  },
   // Ensure Next.js knows where to find pages and exclude test files
   pageExtensions: ["tsx", "ts"].filter((ext) => !ext.includes("test")),
   // Excluir arquivos de teste
@@ -38,9 +29,6 @@ const nextConfig = {
     // This enables SWC compiler while still allowing some Babel customization
     forceSwcTransforms: true,
   },
-
-  // Configuração para serverless
-  output: "standalone",
 };
 
 module.exports = nextConfig;

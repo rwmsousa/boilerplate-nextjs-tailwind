@@ -17,12 +17,10 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
-      "@client/*": ["./src/client/*"],
-      "@server/*": ["./src/server/*"],
-      "@shared/*": ["./src/shared/*"]
+      "@components/*": ["./src/components/*"],
+      "@styles/*": ["./src/styles/*"],
+      "@utils/*": ["./src/utils/*"]
     },
-    "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
     "jsxImportSource": "react"
   },
   "include": [
@@ -30,9 +28,7 @@
     "src/**/*.tsx",
     "src/tests/**/*.ts",
     "src/tests/**/*.tsx",
-    "next-env.d.ts",
-    "vite.config.ts",
-    "api/**/*.ts"
+    "next-env.d.ts"
   ],
   "exclude": [
     "node_modules",
