@@ -11,10 +11,14 @@ A modern frontend template using Next.js and Tailwind CSS.
 - **Vitest**: Fast and lightweight testing framework
 - **Husky & lint-staged**: Git hooks for code quality
 - **Commitizen**: Standardized commit messages
+- **Docker**: Containerization for consistent development and deployment
+- **Makefile**: Simplified Docker commands
 
 ## Requirements
 
 - Node.js 18+ and npm
+- Docker (for containerized development/deployment)
+- Make utility (pre-installed on Linux/Mac, available via chocolatey/scoop on Windows)
 
 ## Getting Started
 
@@ -51,6 +55,59 @@ npm run build
 npm start
 ```
 
+## Docker Support
+
+This project includes Docker support for easy development and deployment.
+
+### Using Docker directly
+
+```bash
+# Build the Docker image
+docker build -t nextjs-app .
+
+# Run the container
+docker run -p 3000:3000 nextjs-app
+```
+
+### Using Makefile commands
+
+A Makefile is provided to simplify Docker operations:
+
+```bash
+# Build the Docker image
+make build
+
+# Run in development mode with volume mounts for hot reloading
+make dev
+
+# Run in production mode
+make prod
+
+# Stop the running container
+make stop
+
+# Remove the container
+make rm
+
+# Stop and remove the container
+make clean
+
+# Show container logs
+make logs
+
+# Enter the container shell
+make shell
+
+# Build and run in production mode
+make up
+
+# Stop, remove, rebuild and run in production mode
+make restart
+
+# Show help with all available commands
+make help
+```
+
 ## Project Structure
 
 ```
@@ -65,6 +122,8 @@ project/
 │   ├── tests/          # Test files
 ├── public/             # Static files
 ├── .husky/             # Git hooks
+├── Dockerfile          # Docker configuration
+├── Makefile            # Make commands for Docker
 └── [config files]      # Configuration files
 ```
 
